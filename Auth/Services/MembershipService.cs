@@ -1,4 +1,7 @@
-﻿using Auth.Models.Membership;
+﻿using Auth.Common;
+using Auth.Common.Constants;
+using Auth.Infrastructure;
+using Auth.Models.Membership;
 using Auth.Repositories;
 
 namespace Auth.Services
@@ -12,13 +15,35 @@ namespace Auth.Services
         }
         public MembershipResult SignIn(SigninDTO signinDTO)
         {
-           var user = _repository.Users.FirstOrDefault(user => user.Phone == "123" && user.Password == "password");
-           return new MembershipResult { IsSuccess = user != null, ErrorMessage = user == null ? "Error": null};
+            string errorMessage = string.Empty;
+            bool isSuccess = true;
+            try
+            {
+                string hashedPassword = Tools.HashPassword(signinDTO.Password);
+                var user = _repository.Users.FirstOrDefault(user => user.Phone == signinDTO.Phone && user.Password == hashedPassword);
+
+                if (user == null)
+                {
+                    isSuccess = false;
+                    errorMessage = GetErrorMessage(ConstantsEnums.ErrorMessages.UserNotFound);
+                }
+
+                return new MembershipResult { IsSuccess = isSuccess, ErrorMessage = errorMessage };
+            }
+            catch (Exception ex)
+            {
+                return new MembershipResult { IsSuccess = isSuccess, ErrorMessage = GetErrorMessage(ConstantsEnums.ErrorMessages.InternalServerError) };
+            }
         }
 
         public MembershipResult SignUp(SignupDTO signupDTO)
         {
             throw new NotImplementedException();
+        }
+        
+        private string GetErrorMessage(ConstantsEnums.ErrorMessages messageKey)
+        {
+            return ResourceManagerSingleton.Instance.GetString(messageKey.ToString());
         }
     }
 }
