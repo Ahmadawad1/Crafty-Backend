@@ -1,0 +1,6 @@
+C:\Users\Ahmad Awad\source\repos\Backend\CentralLoggingService\obj\Debug\net8.0\CentralLoggingService.csproj.AssemblyReference.cache
+C:\Users\Ahmad Awad\source\repos\Backend\CentralLoggingService\obj\Debug\net8.0\CentralLoggingService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ahmad Awad\source\repos\Backend\CentralLoggingService\obj\Debug\net8.0\CentralLoggingService.AssemblyInfoInputs.cache
+C:\Users\Ahmad Awad\source\repos\Backend\CentralLoggingService\obj\Debug\net8.0\CentralLoggingService.AssemblyInfo.cs
+C:\Users\Ahmad Awad\source\repos\Backend\CentralLoggingService\obj\Debug\net8.0\CentralLoggingService.csproj.CoreCompileInputs.cache
+C:\Users\Ahmad Awad\source\repos\Backend\CentralLoggingService\obj\Debug\net8.0\CentralLoggingService.sourcelink.json

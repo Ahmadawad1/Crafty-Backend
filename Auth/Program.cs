@@ -11,6 +11,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var configBuilder = new ConfigurationBuilder()
+     .SetBasePath(Directory.GetCurrentDirectory()) // Optional, defaults to current directory
+     .AddJsonFile("appsettings.json", optional: false); // Specify custom path
+
+IConfiguration configuration = configBuilder.Build();
+
 // Add CORS services
 builder.Services.AddCors(options =>
 {

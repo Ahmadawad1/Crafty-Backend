@@ -5,7 +5,9 @@
         public enum ErrorMessages
         {
             UserNotFound,
-            InternalServerError
+            InternalServerError,
+            PhoneIsUsed,
+            WrongPassword
         }
     }
 }
