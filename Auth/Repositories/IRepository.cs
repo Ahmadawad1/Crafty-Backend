@@ -1,5 +1,4 @@
-﻿using Auth.Models.Membership;
-using Auth.Models.User;
+﻿using Auth.Models.User;
 
 namespace Auth.Repositories
 {
