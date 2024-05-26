@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 ﻿using Auth.Models.User;
 using Microsoft.Azure.Cosmos;
+=======
+﻿using Auth.Models.Membership;
+using Auth.Models.User;
+using Microsoft.Azure.Cosmos;
+using System.Data.SqlClient;
+>>>>>>> 66496ff08c5b25cdfb5ec94749c1b2bd39bef713
 using System.Net;
 
 namespace Auth.Repositories
@@ -46,6 +53,7 @@ namespace Auth.Repositories
 
         public async Task<UserDTO> GetUserByPhone(string phone)
         {
+<<<<<<< HEAD
             try
             {
                 using (var client = new CosmosClient(_connectionString))
@@ -70,6 +78,25 @@ namespace Auth.Repositories
             catch (Exception ex)
             {
                 throw;
+=======
+            using (var client = new CosmosClient(_connectionString))
+            {
+                var container = client.GetDatabase(_databaseId).GetContainer(_containerId);
+                string queryByPhone = $"SELECT * FROM users WHERE users.phone = @phone";
+
+                var iterator = container.GetItemQueryIterator<UserDTO>(queryByPhone);
+
+                while (iterator.HasMoreResults)
+                {
+                    var response = await iterator.ReadNextAsync();
+                    foreach (var user in response)
+                    {
+                        return user; // Return the first user found (assuming unique phone)
+                    }
+                }
+
+                return null; // No user found with the specified phone
+>>>>>>> 66496ff08c5b25cdfb5ec94749c1b2bd39bef713
             }
         }
 
